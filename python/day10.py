@@ -25,11 +25,12 @@ def go_hike(
   if paths is None:
     paths = list()
 
-  up = (location[0], location[1] - 1)
-  right = (location[0] + 1, location[1])
-  down = (location[0], location[1] + 1)
-  left = (location[0] - 1, location[1])
-  current_height = data[location[1]][location[0]]
+  x, y = location
+  up = (x, y - 1)
+  right = (x + 1, y)
+  down = (x, y + 1)
+  left = (x - 1, y)
+  current_height = data[y][x]
   for new_location in list(filter(lambda location: _validate_location(location, current_height), [up, right, down, left])):
     if _get_height(*new_location) == 9:
       peaks.add(new_location)
@@ -37,7 +38,6 @@ def go_hike(
     elif type(new_location) == tuple:
       go_hike(data, new_location, peaks, paths)
   return peaks, paths
-
 
 
 def part_1_and_2(data: list[str]) -> tuple[int, int]:
