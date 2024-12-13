@@ -118,7 +118,11 @@ if __name__ == '__main__':
   import time
 
   data = read_data(12, production=True)
+  start_time = time.perf_counter()
   gardening_areas = get_areas(data)
+  end_time = time.perf_counter()
+  print(f"Building areas (Execution Time: {(end_time - start_time) * 1000:.3f} ms)")
+
   start_time = time.perf_counter()
   answer_part_1 = part_1(gardening_areas)
   end_time = time.perf_counter()
